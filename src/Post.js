@@ -16,20 +16,20 @@ class post extends Component {
         Axios.get('https://jsonplaceholder.typicode.com/posts')
         .then(response => {
             const per = response.data;
-            console.log(per)
             this.setState({person: per})
-        }
-            
-        );
+        });
     }
 
     render(){
         return(
-            <ul>
+            <div className = "Post">
             {this.state.person.map(post =>
-              <li key={post.id}>{post.title}</li>
+              <div> key={post.id}><br />
+              <b>Id:</b>{post.id}<br />
+              <b>Title:</b>{post.title}<br />
+              <b>body:</b>{post.body}<br /></div>
             )}
-          </ul>
+          </div>
             
         );
     }
