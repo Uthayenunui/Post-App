@@ -6,21 +6,30 @@ class post extends Component {
 
     constructor(){
         super()
-        this.RequestHandler = this.RequestHandler.bind(this)
+        // this.RequestHandler = this.RequestHandler.bind(this)
+        this.state={person:[]}
+
     }
 
 
-    RequestHandler(){
+    componentDidMount(){
         Axios.get('https://jsonplaceholder.typicode.com/posts')
-        .then(response => console.log(response))
+        .then(response => {
+            const per = response.data;
+            console.log(per)
+            this.setState({person: per})
+        }
+            
+        );
     }
 
     render(){
         return(
-            <div>
-                <button onClick = {this.RequestHandler}
-                className="btn">Post Request</button>
-            </div>
+            <ul>
+            {this.state.person.map(post =>
+              <li key={post.id}>{post.title}</li>
+            )}
+          </ul>
             
         );
     }
